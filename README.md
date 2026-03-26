@@ -12,9 +12,9 @@ This project is a visual timeline of every Portuguese player who has appeared in
 
 All data is sourced from the CSV file included in this repository:
 
-[Download Portuguese EPL Players by Season (.csv)](https://github.com/jpmgoncalves/epl-pt-players/blob/main/Portuguese%20EPL%20Players%20by%20Season.csv)
+[Download Portuguese EPL Players Stats (.csv)](https://github.com/jpmgoncalves/epl-pt-players/blob/main/Portuguese%20EPL%20Players%20Stats.csv)
 
-The dataset covers **30 seasons** (1995/96 — 2025/26) and **312 player–season entries** across multiple clubs.
+The dataset covers **31 seasons** (1995/96 — 2025/26) and **313 player–season entries** across multiple clubs, including appearances, goals and assists per player per season.
 
 ## Stack
 
