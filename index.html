@@ -87,7 +87,7 @@
   main{max-width:1100px;margin:0 auto;padding:0 32px 80px}
 
   .pl-timeline{position:relative;padding-left:52px}
-  .pl-timeline::before{content:'';position:absolute;left:16px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,transparent 0%,var(--pl-magenta) 3%,var(--pl-border) 6%,var(--pl-border) 94%,transparent 100%)}
+  .pl-timeline::before{content:'';position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,transparent 0%,var(--pl-magenta) 3%,var(--pl-border) 6%,var(--pl-border) 94%,transparent 100%)}
 
   .pl-entry{position:relative;margin-bottom:8px;opacity:0;transform:translateY(8px);animation:plFadeUp 0.3s ease forwards}
   @keyframes plFadeUp{to{opacity:1;transform:translateY(0)}}
@@ -157,10 +157,11 @@
 
   @media(max-width:640px){
     .pl-utility-bar,.pl-nav,.pl-hero,.pl-section-head,main,.pl-footer{padding-left:16px;padding-right:16px}
+    .pl-filter-bar{margin-top:8px}
     .pl-filter-inner{padding:0 16px}
     .pl-timeline{padding-left:36px}
-    .pl-timeline::before{left:10px}
-    .pl-entry::before{left:-27px}
+    .pl-timeline::before{left:13px}
+    .pl-entry::before{left:-28px}
     .pl-utility-bar{display:none}
     .pl-club-players{padding-left:20px}
     .pl-dropdown{display:none}
