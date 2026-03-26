@@ -28,10 +28,6 @@
   html{scroll-behavior:smooth}
   body{background:var(--pl-bg);color:var(--pl-text);font-family:var(--font-body);font-size:15px;line-height:1.5;min-height:100vh}
 
-  .pl-utility-bar{background:var(--pl-purple);padding:0 32px;height:36px;display:flex;align-items:center}
-  .pl-utility-bar-links{display:flex;gap:24px}
-  .pl-utility-bar a{font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);text-decoration:none}
-  .pl-utility-bar a:hover{color:white}
 
   .pl-nav{background:var(--pl-white);border-bottom:1px solid var(--pl-border);height:64px;display:flex;align-items:center;padding:0 32px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(55,0,60,0.08)}
   .pl-nav-inner{max-width:1100px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
@@ -156,13 +152,13 @@
   ::-webkit-scrollbar-thumb:hover{background:var(--pl-purple-80)}
 
   @media(max-width:640px){
-    .pl-utility-bar,.pl-nav,.pl-hero,.pl-section-head,main,.pl-footer{padding-left:16px;padding-right:16px}
+    .pl-nav,.pl-hero,.pl-section-head,main,.pl-footer{padding-left:16px;padding-right:16px}
     .pl-filter-bar{margin-top:8px}
     .pl-filter-inner{padding:0 16px}
     .pl-timeline{padding-left:36px}
     .pl-timeline::before{left:13px}
     .pl-entry::before{left:-28px}
-    .pl-utility-bar{display:none}
+
     .pl-club-players{padding-left:20px}
     .pl-dropdown{display:none}
     .pl-native-select{display:block;min-width:0;flex:1}
@@ -179,11 +175,6 @@
 </head>
 <body>
 
-<div class="pl-utility-bar">
-  <div class="pl-utility-bar-links">
-    <a href="#">Premier League</a><a href="#">Shop</a><a href="#">About Us</a><a href="#">Football &amp; Community</a><a href="#">Media</a>
-  </div>
-</div>
 
 <nav class="pl-nav">
   <div class="pl-nav-inner">
