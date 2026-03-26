@@ -53,9 +53,11 @@
   .pl-hero-stat-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px;display:block}
 
   .pl-filter-bar{background:var(--pl-white);border-bottom:1px solid var(--pl-border);position:sticky;top:64px;z-index:90}
-  .pl-filter-inner{max-width:1100px;margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;gap:12px}
+  .pl-filter-inner{max-width:1100px;margin:0 auto;padding:0 32px;min-height:56px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
   .pl-filter-label{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--pl-text-dim);flex-shrink:0}
   .pl-filter-result{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.06em;color:var(--pl-text-dim);background:var(--pl-purple-10);padding:4px 10px;border-radius:2px;white-space:nowrap}
+  .pl-filter-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;width:100%}
+  .pl-filter-group{display:flex;align-items:center;gap:8px;flex-shrink:0}
 
   .pl-dropdown{position:relative;flex-shrink:0}
   .pl-dropdown-btn{display:inline-flex;align-items:center;gap:8px;background:var(--pl-white);border:1px solid var(--pl-border-strong);border-radius:var(--pl-radius);padding:7px 12px;font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:0.04em;color:var(--pl-purple);cursor:pointer;min-width:210px;justify-content:space-between;transition:border-color 0.15s,background 0.15s;user-select:none}
@@ -162,7 +164,10 @@
     .pl-utility-bar{display:none}
     .pl-club-players{padding-left:20px}
     .pl-dropdown{display:none}
-    .pl-native-select{display:block}
+    .pl-native-select{display:block;min-width:0;flex:1}
+    .pl-filter-row{flex-direction:column;align-items:stretch;gap:8px}
+    .pl-filter-group{flex-wrap:wrap}
+    .pl-filter-result{align-self:flex-start}
   }
 
   /* Desktop: show tooltip on hover */
@@ -236,14 +241,16 @@
 
 <div class="pl-filter-bar">
   <div class="pl-filter-inner">
-    <span class="pl-filter-label">Filter by Club</span>
-    <div class="pl-dropdown">
-      <div class="pl-dropdown-btn" id="dropdownBtn">
-        <span id="dropdownLabel">All Clubs</span>
-        <span class="pl-dropdown-arrow"></span>
-      </div>
-      <div class="pl-dropdown-menu" id="dropdownMenu">
-        <div class="pl-dropdown-item selected" data-value="all"><span>All Clubs</span></div>
+    <div class="pl-filter-row">
+      <div class="pl-filter-group">
+        <span class="pl-filter-label">Club</span>
+        <div class="pl-dropdown">
+          <div class="pl-dropdown-btn" id="dropdownBtn">
+            <span id="dropdownLabel">All Clubs</span>
+            <span class="pl-dropdown-arrow"></span>
+          </div>
+          <div class="pl-dropdown-menu" id="dropdownMenu">
+            <div class="pl-dropdown-item selected" data-value="all"><span>All Clubs</span></div>
         <div class="pl-dropdown-item" data-value="Arsenal"><img src="logos/arsenal.svg" alt=""><span>Arsenal</span></div>
         <div class="pl-dropdown-item" data-value="Aston Villa"><img src="logos/astonvilla.svg" alt=""><span>Aston Villa</span></div>
         <div class="pl-dropdown-item" data-value="Bolton Wanderers"><img src="logos/boltonwanderers.png" alt=""><span>Bolton Wanderers</span></div>
@@ -273,40 +280,253 @@
         <div class="pl-dropdown-item" data-value="West Bromwich Albion"><img src="logos/westbromwichalbion.png" alt=""><span>West Bromwich Albion</span></div>
         <div class="pl-dropdown-item" data-value="West Ham United"><img src="logos/westham.svg" alt=""><span>West Ham United</span></div>
         <div class="pl-dropdown-item" data-value="Wolverhampton Wanderers"><img src="logos/wolves.svg" alt=""><span>Wolverhampton Wanderers</span></div>
+          </div>
+        </div>
+        <select class="pl-native-select" id="nativeSelect">
+          <option value="all">All Clubs</option>
+          <option value="Arsenal">Arsenal</option>
+          <option value="Aston Villa">Aston Villa</option>
+          <option value="Bolton Wanderers">Bolton Wanderers</option>
+          <option value="Bradford City">Bradford City</option>
+          <option value="Brentford">Brentford</option>
+          <option value="Burnley">Burnley</option>
+          <option value="Charlton Athletic">Charlton Athletic</option>
+          <option value="Chelsea">Chelsea</option>
+          <option value="Everton">Everton</option>
+          <option value="Fulham">Fulham</option>
+          <option value="Leeds United">Leeds United</option>
+          <option value="Leicester City">Leicester City</option>
+          <option value="Liverpool">Liverpool</option>
+          <option value="Manchester City">Manchester City</option>
+          <option value="Manchester United">Manchester United</option>
+          <option value="Middlesbrough">Middlesbrough</option>
+          <option value="Newcastle United">Newcastle United</option>
+          <option value="Norwich City">Norwich City</option>
+          <option value="Nottingham Forest">Nottingham Forest</option>
+          <option value="Portsmouth">Portsmouth</option>
+          <option value="Queens Park Rangers">Queens Park Rangers</option>
+          <option value="Reading">Reading</option>
+          <option value="Southampton">Southampton</option>
+          <option value="Swansea City">Swansea City</option>
+          <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+          <option value="Watford">Watford</option>
+          <option value="West Bromwich Albion">West Bromwich Albion</option>
+          <option value="West Ham United">West Ham United</option>
+          <option value="Wolverhampton Wanderers">Wolverhampton Wanderers</option>
+        </select>
+      </div>
+      <div class="pl-filter-group">
+        <span class="pl-filter-label">Player</span>
+        <div class="pl-dropdown">
+          <div class="pl-dropdown-btn" id="playerDropdownBtn">
+            <span id="playerDropdownLabel">All Players</span>
+            <span class="pl-dropdown-arrow"></span>
+          </div>
+          <div class="pl-dropdown-menu" id="playerDropdownMenu">
+            <div class="pl-dropdown-item selected" data-value="all"><span>All Players</span></div>
+            <div class="pl-dropdown-item" data-value="Abel Xavier"><span>Abel Xavier</span></div>
+            <div class="pl-dropdown-item" data-value="Adrien Silva"><span>Adrien Silva</span></div>
+            <div class="pl-dropdown-item" data-value="Andr&eacute; Gomes"><span>Andr&eacute; Gomes</span></div>
+            <div class="pl-dropdown-item" data-value="Ariza Makukula"><span>Ariza Makukula</span></div>
+            <div class="pl-dropdown-item" data-value="Bernardo Silva"><span>Bernardo Silva</span></div>
+            <div class="pl-dropdown-item" data-value="Bruno Andrade"><span>Bruno Andrade</span></div>
+            <div class="pl-dropdown-item" data-value="Bruno Fernandes"><span>Bruno Fernandes</span></div>
+            <div class="pl-dropdown-item" data-value="Bruno Jord&atilde;o"><span>Bruno Jord&atilde;o</span></div>
+            <div class="pl-dropdown-item" data-value="Bruno Ribeiro"><span>Bruno Ribeiro</span></div>
+            <div class="pl-dropdown-item" data-value="Caf&uacute;"><span>Caf&uacute;</span></div>
+            <div class="pl-dropdown-item" data-value="Carlos Forbs"><span>Carlos Forbs</span></div>
+            <div class="pl-dropdown-item" data-value="Chiquinho"><span>Chiquinho</span></div>
+            <div class="pl-dropdown-item" data-value="Cristiano Ronaldo"><span>Cristiano Ronaldo</span></div>
+            <div class="pl-dropdown-item" data-value="C&eacute;dric"><span>C&eacute;dric</span></div>
+            <div class="pl-dropdown-item" data-value="Dani"><span>Dani</span></div>
+            <div class="pl-dropdown-item" data-value="Dani Rodrigues"><span>Dani Rodrigues</span></div>
+            <div class="pl-dropdown-item" data-value="Daniel Carri&ccedil;o"><span>Daniel Carri&ccedil;o</span></div>
+            <div class="pl-dropdown-item" data-value="Daniel Podence"><span>Daniel Podence</span></div>
+            <div class="pl-dropdown-item" data-value="Deco"><span>Deco</span></div>
+            <div class="pl-dropdown-item" data-value="Diogo Dalot"><span>Diogo Dalot</span></div>
+            <div class="pl-dropdown-item" data-value="Diogo Jota"><span>Diogo Jota</span></div>
+            <div class="pl-dropdown-item" data-value="Domingos Quina"><span>Domingos Quina</span></div>
+            <div class="pl-dropdown-item" data-value="Eder"><span>Eder</span></div>
+            <div class="pl-dropdown-item" data-value="Fernando N&eacute;lson"><span>Fernando N&eacute;lson</span></div>
+            <div class="pl-dropdown-item" data-value="Filipe Oliveira"><span>Filipe Oliveira</span></div>
+            <div class="pl-dropdown-item" data-value="Filipe Teixeira"><span>Filipe Teixeira</span></div>
+            <div class="pl-dropdown-item" data-value="Florentino Lu&iacute;s"><span>Florentino Lu&iacute;s</span></div>
+            <div class="pl-dropdown-item" data-value="Francisco Trinc&atilde;o"><span>Francisco Trinc&atilde;o</span></div>
+            <div class="pl-dropdown-item" data-value="F&aacute;bio Carvalho"><span>F&aacute;bio Carvalho</span></div>
+            <div class="pl-dropdown-item" data-value="F&aacute;bio Silva"><span>F&aacute;bio Silva</span></div>
+            <div class="pl-dropdown-item" data-value="F&aacute;bio Vieira"><span>F&aacute;bio Vieira</span></div>
+            <div class="pl-dropdown-item" data-value="Gedson Fernandes"><span>Gedson Fernandes</span></div>
+            <div class="pl-dropdown-item" data-value="Gon&ccedil;alo Guedes"><span>Gon&ccedil;alo Guedes</span></div>
+            <div class="pl-dropdown-item" data-value="Henrique Hil&aacute;rio"><span>Henrique Hil&aacute;rio</span></div>
+            <div class="pl-dropdown-item" data-value="Hugo Porf&iacute;rio"><span>Hugo Porf&iacute;rio</span></div>
+            <div class="pl-dropdown-item" data-value="Hugo Viana"><span>Hugo Viana</span></div>
+            <div class="pl-dropdown-item" data-value="H&eacute;lder"><span>H&eacute;lder</span></div>
+            <div class="pl-dropdown-item" data-value="H&eacute;lder Postiga"><span>H&eacute;lder Postiga</span></div>
+            <div class="pl-dropdown-item" data-value="Ivan Cavaleiro"><span>Ivan Cavaleiro</span></div>
+            <div class="pl-dropdown-item" data-value="Ivo Pinto"><span>Ivo Pinto</span></div>
+            <div class="pl-dropdown-item" data-value="Joel Pereira"><span>Joel Pereira</span></div>
+            <div class="pl-dropdown-item" data-value="Jord&atilde;o"><span>Jord&atilde;o</span></div>
+            <div class="pl-dropdown-item" data-value="Jorge Cadete"><span>Jorge Cadete</span></div>
+            <div class="pl-dropdown-item" data-value="Jorge Costa"><span>Jorge Costa</span></div>
+            <div class="pl-dropdown-item" data-value="Jos&eacute; Bosingwa"><span>Jos&eacute; Bosingwa</span></div>
+            <div class="pl-dropdown-item" data-value="Jos&eacute; Dominguez"><span>Jos&eacute; Dominguez</span></div>
+            <div class="pl-dropdown-item" data-value="Jos&eacute; Fonte"><span>Jos&eacute; Fonte</span></div>
+            <div class="pl-dropdown-item" data-value="Jos&eacute; S&aacute;"><span>Jos&eacute; S&aacute;</span></div>
+            <div class="pl-dropdown-item" data-value="Jota Silva"><span>Jota Silva</span></div>
+            <div class="pl-dropdown-item" data-value="Jo&atilde;o Cancelo"><span>Jo&atilde;o Cancelo</span></div>
+            <div class="pl-dropdown-item" data-value="Jo&atilde;o Carlos Teixeira"><span>Jo&atilde;o Carlos Teixeira</span></div>
+            <div class="pl-dropdown-item" data-value="Jo&atilde;o F&eacute;lix"><span>Jo&atilde;o F&eacute;lix</span></div>
+            <div class="pl-dropdown-item" data-value="Jo&atilde;o Moutinho"><span>Jo&atilde;o Moutinho</span></div>
+            <div class="pl-dropdown-item" data-value="Jo&atilde;o M&aacute;rio"><span>Jo&atilde;o M&aacute;rio</span></div>
+            <div class="pl-dropdown-item" data-value="Jo&atilde;o Palhinha"><span>Jo&atilde;o Palhinha</span></div>
+            <div class="pl-dropdown-item" data-value="Jo&atilde;o Virg&iacute;nia"><span>Jo&atilde;o Virg&iacute;nia</span></div>
+            <div class="pl-dropdown-item" data-value="Lu&iacute;s Boa Morte"><span>Lu&iacute;s Boa Morte</span></div>
+            <div class="pl-dropdown-item" data-value="Maniche"><span>Maniche</span></div>
+            <div class="pl-dropdown-item" data-value="Manuel Fernandes"><span>Manuel Fernandes</span></div>
+            <div class="pl-dropdown-item" data-value="Marco Almeida"><span>Marco Almeida</span></div>
+            <div class="pl-dropdown-item" data-value="Mateus Fernandes"><span>Mateus Fernandes</span></div>
+            <div class="pl-dropdown-item" data-value="Matheus Nunes"><span>Matheus Nunes</span></div>
+            <div class="pl-dropdown-item" data-value="Nani"><span>Nani</span></div>
+            <div class="pl-dropdown-item" data-value="Nuno Morais"><span>Nuno Morais</span></div>
+            <div class="pl-dropdown-item" data-value="Nuno Tavares"><span>Nuno Tavares</span></div>
+            <div class="pl-dropdown-item" data-value="Nuno Valente"><span>Nuno Valente</span></div>
+            <div class="pl-dropdown-item" data-value="N&eacute;lson Oliveira"><span>N&eacute;lson Oliveira</span></div>
+            <div class="pl-dropdown-item" data-value="N&eacute;lson Semedo"><span>N&eacute;lson Semedo</span></div>
+            <div class="pl-dropdown-item" data-value="Orlando S&aacute;"><span>Orlando S&aacute;</span></div>
+            <div class="pl-dropdown-item" data-value="Pablo"><span>Pablo</span></div>
+            <div class="pl-dropdown-item" data-value="Paulo Alves"><span>Paulo Alves</span></div>
+            <div class="pl-dropdown-item" data-value="Paulo Ferreira"><span>Paulo Ferreira</span></div>
+            <div class="pl-dropdown-item" data-value="Paulo Futre"><span>Paulo Futre</span></div>
+            <div class="pl-dropdown-item" data-value="Pedro Mendes"><span>Pedro Mendes</span></div>
+            <div class="pl-dropdown-item" data-value="Pedro Neto"><span>Pedro Neto</span></div>
+            <div class="pl-dropdown-item" data-value="Rafael Camacho"><span>Rafael Camacho</span></div>
+            <div class="pl-dropdown-item" data-value="Raul Meireles"><span>Raul Meireles</span></div>
+            <div class="pl-dropdown-item" data-value="Renato Sanches"><span>Renato Sanches</span></div>
+            <div class="pl-dropdown-item" data-value="Renato Veiga"><span>Renato Veiga</span></div>
+            <div class="pl-dropdown-item" data-value="Ricardo Carvalho"><span>Ricardo Carvalho</span></div>
+            <div class="pl-dropdown-item" data-value="Ricardo Pereira"><span>Ricardo Pereira</span></div>
+            <div class="pl-dropdown-item" data-value="Ricardo Quaresma"><span>Ricardo Quaresma</span></div>
+            <div class="pl-dropdown-item" data-value="Ricardo Rocha"><span>Ricardo Rocha</span></div>
+            <div class="pl-dropdown-item" data-value="Ricardo Vaz T&ecirc;"><span>Ricardo Vaz T&ecirc;</span></div>
+            <div class="pl-dropdown-item" data-value="Rodrigo Gomes"><span>Rodrigo Gomes</span></div>
+            <div class="pl-dropdown-item" data-value="Rodrigo Ribeiro"><span>Rodrigo Ribeiro</span></div>
+            <div class="pl-dropdown-item" data-value="Rui Patr&iacute;cio"><span>Rui Patr&iacute;cio</span></div>
+            <div class="pl-dropdown-item" data-value="R&uacute;ben Dias"><span>R&uacute;ben Dias</span></div>
+            <div class="pl-dropdown-item" data-value="R&uacute;ben Neves"><span>R&uacute;ben Neves</span></div>
+            <div class="pl-dropdown-item" data-value="R&uacute;ben Vinagre"><span>R&uacute;ben Vinagre</span></div>
+            <div class="pl-dropdown-item" data-value="Sidnei Tavares"><span>Sidnei Tavares</span></div>
+            <div class="pl-dropdown-item" data-value="Silas"><span>Silas</span></div>
+            <div class="pl-dropdown-item" data-value="Silvestre Varela"><span>Silvestre Varela</span></div>
+            <div class="pl-dropdown-item" data-value="Tiago"><span>Tiago</span></div>
+            <div class="pl-dropdown-item" data-value="Toti Gomes"><span>Toti Gomes</span></div>
+            <div class="pl-dropdown-item" data-value="Vitinha"><span>Vitinha</span></div>
+            <div class="pl-dropdown-item" data-value="Xande Silva"><span>Xande Silva</span></div>
+            <div class="pl-dropdown-item" data-value="Youssef Chermiti"><span>Youssef Chermiti</span></div>
+          </div>
+        </div>
+        <select class="pl-native-select" id="nativePlayerSelect">
+          <option value="all">All Players</option>
+          <option value="Abel Xavier">Abel Xavier</option>
+          <option value="Adrien Silva">Adrien Silva</option>
+          <option value="André Gomes">André Gomes</option>
+          <option value="Ariza Makukula">Ariza Makukula</option>
+          <option value="Bernardo Silva">Bernardo Silva</option>
+          <option value="Bruno Andrade">Bruno Andrade</option>
+          <option value="Bruno Fernandes">Bruno Fernandes</option>
+          <option value="Bruno Jordão">Bruno Jordão</option>
+          <option value="Bruno Ribeiro">Bruno Ribeiro</option>
+          <option value="Cafú">Cafú</option>
+          <option value="Carlos Forbs">Carlos Forbs</option>
+          <option value="Chiquinho">Chiquinho</option>
+          <option value="Cristiano Ronaldo">Cristiano Ronaldo</option>
+          <option value="Cédric">Cédric</option>
+          <option value="Dani">Dani</option>
+          <option value="Dani Rodrigues">Dani Rodrigues</option>
+          <option value="Daniel Carriço">Daniel Carriço</option>
+          <option value="Daniel Podence">Daniel Podence</option>
+          <option value="Deco">Deco</option>
+          <option value="Diogo Dalot">Diogo Dalot</option>
+          <option value="Diogo Jota">Diogo Jota</option>
+          <option value="Domingos Quina">Domingos Quina</option>
+          <option value="Eder">Eder</option>
+          <option value="Fernando Nélson">Fernando Nélson</option>
+          <option value="Filipe Oliveira">Filipe Oliveira</option>
+          <option value="Filipe Teixeira">Filipe Teixeira</option>
+          <option value="Florentino Luís">Florentino Luís</option>
+          <option value="Francisco Trincão">Francisco Trincão</option>
+          <option value="Fábio Carvalho">Fábio Carvalho</option>
+          <option value="Fábio Silva">Fábio Silva</option>
+          <option value="Fábio Vieira">Fábio Vieira</option>
+          <option value="Gedson Fernandes">Gedson Fernandes</option>
+          <option value="Gonçalo Guedes">Gonçalo Guedes</option>
+          <option value="Henrique Hilário">Henrique Hilário</option>
+          <option value="Hugo Porfírio">Hugo Porfírio</option>
+          <option value="Hugo Viana">Hugo Viana</option>
+          <option value="Hélder">Hélder</option>
+          <option value="Hélder Postiga">Hélder Postiga</option>
+          <option value="Ivan Cavaleiro">Ivan Cavaleiro</option>
+          <option value="Ivo Pinto">Ivo Pinto</option>
+          <option value="Joel Pereira">Joel Pereira</option>
+          <option value="Jordão">Jordão</option>
+          <option value="Jorge Cadete">Jorge Cadete</option>
+          <option value="Jorge Costa">Jorge Costa</option>
+          <option value="José Bosingwa">José Bosingwa</option>
+          <option value="José Dominguez">José Dominguez</option>
+          <option value="José Fonte">José Fonte</option>
+          <option value="José Sá">José Sá</option>
+          <option value="Jota Silva">Jota Silva</option>
+          <option value="João Cancelo">João Cancelo</option>
+          <option value="João Carlos Teixeira">João Carlos Teixeira</option>
+          <option value="João Félix">João Félix</option>
+          <option value="João Moutinho">João Moutinho</option>
+          <option value="João Mário">João Mário</option>
+          <option value="João Palhinha">João Palhinha</option>
+          <option value="João Virgínia">João Virgínia</option>
+          <option value="Luís Boa Morte">Luís Boa Morte</option>
+          <option value="Maniche">Maniche</option>
+          <option value="Manuel Fernandes">Manuel Fernandes</option>
+          <option value="Marco Almeida">Marco Almeida</option>
+          <option value="Mateus Fernandes">Mateus Fernandes</option>
+          <option value="Matheus Nunes">Matheus Nunes</option>
+          <option value="Nani">Nani</option>
+          <option value="Nuno Morais">Nuno Morais</option>
+          <option value="Nuno Tavares">Nuno Tavares</option>
+          <option value="Nuno Valente">Nuno Valente</option>
+          <option value="Nélson Oliveira">Nélson Oliveira</option>
+          <option value="Nélson Semedo">Nélson Semedo</option>
+          <option value="Orlando Sá">Orlando Sá</option>
+          <option value="Pablo">Pablo</option>
+          <option value="Paulo Alves">Paulo Alves</option>
+          <option value="Paulo Ferreira">Paulo Ferreira</option>
+          <option value="Paulo Futre">Paulo Futre</option>
+          <option value="Pedro Mendes">Pedro Mendes</option>
+          <option value="Pedro Neto">Pedro Neto</option>
+          <option value="Rafael Camacho">Rafael Camacho</option>
+          <option value="Raul Meireles">Raul Meireles</option>
+          <option value="Renato Sanches">Renato Sanches</option>
+          <option value="Renato Veiga">Renato Veiga</option>
+          <option value="Ricardo Carvalho">Ricardo Carvalho</option>
+          <option value="Ricardo Pereira">Ricardo Pereira</option>
+          <option value="Ricardo Quaresma">Ricardo Quaresma</option>
+          <option value="Ricardo Rocha">Ricardo Rocha</option>
+          <option value="Ricardo Vaz Tê">Ricardo Vaz Tê</option>
+          <option value="Rodrigo Gomes">Rodrigo Gomes</option>
+          <option value="Rodrigo Ribeiro">Rodrigo Ribeiro</option>
+          <option value="Rui Patrício">Rui Patrício</option>
+          <option value="Rúben Dias">Rúben Dias</option>
+          <option value="Rúben Neves">Rúben Neves</option>
+          <option value="Rúben Vinagre">Rúben Vinagre</option>
+          <option value="Sidnei Tavares">Sidnei Tavares</option>
+          <option value="Silas">Silas</option>
+          <option value="Silvestre Varela">Silvestre Varela</option>
+          <option value="Tiago">Tiago</option>
+          <option value="Toti Gomes">Toti Gomes</option>
+          <option value="Vitinha">Vitinha</option>
+          <option value="Xande Silva">Xande Silva</option>
+          <option value="Youssef Chermiti">Youssef Chermiti</option>
+        </select>
       </div>
     </div>
-    <select class="pl-native-select" id="nativeSelect">
-      <option value="all">All Clubs</option>
-      <option value="Arsenal">Arsenal</option>
-      <option value="Aston Villa">Aston Villa</option>
-      <option value="Bolton Wanderers">Bolton Wanderers</option>
-      <option value="Bradford City">Bradford City</option>
-      <option value="Brentford">Brentford</option>
-      <option value="Burnley">Burnley</option>
-      <option value="Charlton Athletic">Charlton Athletic</option>
-      <option value="Chelsea">Chelsea</option>
-      <option value="Everton">Everton</option>
-      <option value="Fulham">Fulham</option>
-      <option value="Leeds United">Leeds United</option>
-      <option value="Leicester City">Leicester City</option>
-      <option value="Liverpool">Liverpool</option>
-      <option value="Manchester City">Manchester City</option>
-      <option value="Manchester United">Manchester United</option>
-      <option value="Middlesbrough">Middlesbrough</option>
-      <option value="Newcastle United">Newcastle United</option>
-      <option value="Norwich City">Norwich City</option>
-      <option value="Nottingham Forest">Nottingham Forest</option>
-      <option value="Portsmouth">Portsmouth</option>
-      <option value="Queens Park Rangers">Queens Park Rangers</option>
-      <option value="Reading">Reading</option>
-      <option value="Southampton">Southampton</option>
-      <option value="Swansea City">Swansea City</option>
-      <option value="Tottenham Hotspur">Tottenham Hotspur</option>
-      <option value="Watford">Watford</option>
-      <option value="West Bromwich Albion">West Bromwich Albion</option>
-      <option value="West Ham United">West Ham United</option>
-      <option value="Wolverhampton Wanderers">Wolverhampton Wanderers</option>
-    </select>
     <span class="pl-filter-result" id="filterResult">31 seasons shown</span>
   </div>
 </div>
@@ -5458,24 +5678,62 @@
 </footer>
 
 <script>
-// --- Filtering ---
-const btn=document.getElementById('dropdownBtn'),menu=document.getElementById('dropdownMenu'),label=document.getElementById('dropdownLabel'),filterResult=document.getElementById('filterResult'),sectionCount=document.getElementById('sectionCount'),entries=document.querySelectorAll('.pl-entry'),nativeSelect=document.getElementById('nativeSelect');
+// --- State ---
+let currentClub='all', currentPlayer='all';
 
-function applyFilter(value){
+// --- Elements ---
+const btn=document.getElementById('dropdownBtn'),menu=document.getElementById('dropdownMenu'),label=document.getElementById('dropdownLabel');
+const playerBtn=document.getElementById('playerDropdownBtn'),playerMenu=document.getElementById('playerDropdownMenu'),playerLabel=document.getElementById('playerDropdownLabel');
+const filterResult=document.getElementById('filterResult'),sectionCount=document.getElementById('sectionCount');
+const entries=document.querySelectorAll('.pl-entry');
+const nativeSelect=document.getElementById('nativeSelect'),nativePlayerSelect=document.getElementById('nativePlayerSelect');
+
+// --- Unified Filter ---
+function applyFilters(){
   let shown=0;
   entries.forEach(entry=>{
     const clubs=(entry.dataset.clubs||'').split(',').map(s=>s.trim());
-    const match=value==='all'||clubs.includes(value);
-    entry.classList.toggle('hidden',!match);
-    if(match)shown++;
+    const clubMatch=currentClub==='all'||clubs.includes(currentClub);
+
+    // Check if any player in this entry matches the player filter
+    const allPlayers=entry.querySelectorAll('.pl-player');
+    let hasPlayerMatch=currentPlayer==='all';
+    if(!hasPlayerMatch){
+      allPlayers.forEach(p=>{if(p.dataset.name===currentPlayer) hasPlayerMatch=true;});
+    }
+
+    const entryVisible=clubMatch&&hasPlayerMatch;
+    entry.classList.toggle('hidden',!entryVisible);
+    if(entryVisible) shown++;
+
+    // Show/hide club sections and individual players
     const clubSections=entry.querySelectorAll('.pl-club-section');
     let visiblePlayers=0,visibleClubs=0;
     clubSections.forEach(sec=>{
       const secName=sec.querySelector('.pl-club-section-name')?.textContent.trim();
-      const secMatch=value==='all'||secName===value;
-      sec.style.display=secMatch?'':'none';
-      if(secMatch){visibleClubs++;visiblePlayers+=sec.querySelectorAll('.pl-player').length;}
+      const clubSecMatch=currentClub==='all'||secName===currentClub;
+
+      if(!clubSecMatch){sec.style.display='none';return;}
+
+      // Filter players within this club section
+      const players=sec.querySelectorAll('.pl-player');
+      let secPlayerCount=0;
+      players.forEach(p=>{
+        const playerMatch=currentPlayer==='all'||p.dataset.name===currentPlayer;
+        p.style.display=playerMatch?'':'none';
+        if(playerMatch) secPlayerCount++;
+      });
+
+      // Hide club section if no players visible
+      if(secPlayerCount===0){sec.style.display='none';}
+      else{sec.style.display='';visibleClubs++;visiblePlayers+=secPlayerCount;
+        // Update player count in section header
+        const countEl=sec.querySelector('.pl-club-player-count');
+        if(countEl) countEl.textContent=secPlayerCount+' player'+(secPlayerCount!==1?'s':'');
+      }
     });
+
+    // Update card summary
     const summary=entry.querySelector('.pl-card-summary');
     if(summary){
       const spans=summary.querySelectorAll('span:not(.pl-card-summary-sep)');
@@ -5484,36 +5742,66 @@ function applyFilter(value){
         spans[1].textContent=visibleClubs+' club'+(visibleClubs!==1?'s':'');
       }
     }
+
+    // Hide entry if no visible players at all
+    if(entryVisible&&visiblePlayers===0){entry.classList.add('hidden');shown--;}
   });
   const sfx=shown===1?' season':' seasons';
   filterResult.textContent=shown+sfx+' shown';
   sectionCount.textContent=shown+sfx+' \u00b7 most recent first';
 }
 
-// Custom dropdown (desktop)
-btn.addEventListener('click',e=>{e.stopPropagation();btn.classList.toggle('open');menu.classList.toggle('open')});
-document.addEventListener('click',()=>{btn.classList.remove('open');menu.classList.remove('open')});
+// --- Close all dropdowns ---
+function closeAllDropdowns(){
+  btn.classList.remove('open');menu.classList.remove('open');
+  playerBtn.classList.remove('open');playerMenu.classList.remove('open');
+}
+document.addEventListener('click',closeAllDropdowns);
+
+// --- Club dropdown (desktop) ---
+btn.addEventListener('click',e=>{e.stopPropagation();playerBtn.classList.remove('open');playerMenu.classList.remove('open');btn.classList.toggle('open');menu.classList.toggle('open')});
 menu.querySelectorAll('.pl-dropdown-item').forEach(item=>{
   item.addEventListener('click',e=>{
     e.stopPropagation();
     const value=item.dataset.value,text=item.querySelector('span:last-child')?.textContent.trim()||item.textContent.trim();
     menu.querySelectorAll('.pl-dropdown-item').forEach(i=>i.classList.remove('selected'));
     item.classList.add('selected');label.textContent=text;
-    btn.classList.remove('open');menu.classList.remove('open');
+    closeAllDropdowns();
     nativeSelect.value=value;
-    applyFilter(value);
+    currentClub=value;
+    applyFilters();
   });
 });
 
-// Native select (mobile)
+// --- Player dropdown (desktop) ---
+playerBtn.addEventListener('click',e=>{e.stopPropagation();btn.classList.remove('open');menu.classList.remove('open');playerBtn.classList.toggle('open');playerMenu.classList.toggle('open')});
+playerMenu.querySelectorAll('.pl-dropdown-item').forEach(item=>{
+  item.addEventListener('click',e=>{
+    e.stopPropagation();
+    const value=item.dataset.value,text=item.querySelector('span:last-child')?.textContent.trim()||item.textContent.trim();
+    playerMenu.querySelectorAll('.pl-dropdown-item').forEach(i=>i.classList.remove('selected'));
+    item.classList.add('selected');playerLabel.textContent=text;
+    closeAllDropdowns();
+    nativePlayerSelect.value=value;
+    currentPlayer=value;
+    applyFilters();
+  });
+});
+
+// --- Native selects (mobile) ---
 nativeSelect.addEventListener('change',function(){
   const value=this.value;
-  // Sync custom dropdown
-  menu.querySelectorAll('.pl-dropdown-item').forEach(i=>{
-    i.classList.toggle('selected',i.dataset.value===value);
-  });
+  menu.querySelectorAll('.pl-dropdown-item').forEach(i=>i.classList.toggle('selected',i.dataset.value===value));
   label.textContent=this.options[this.selectedIndex].textContent;
-  applyFilter(value);
+  currentClub=value;
+  applyFilters();
+});
+nativePlayerSelect.addEventListener('change',function(){
+  const value=this.value;
+  playerMenu.querySelectorAll('.pl-dropdown-item').forEach(i=>i.classList.toggle('selected',i.dataset.value===value));
+  playerLabel.textContent=this.options[this.selectedIndex].textContent;
+  currentPlayer=value;
+  applyFilters();
 });
 
 // --- Mobile Modal ---
