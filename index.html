@@ -2875,6 +2875,27 @@ menu.querySelectorAll('.pl-dropdown-item').forEach(item=>{
       const match=value==='all'||clubs.includes(value);
       entry.classList.toggle('hidden',!match);
       if(match)shown++;
+      // Show/hide individual club sections within the card
+      const clubSections=entry.querySelectorAll('.pl-club-section');
+      let visiblePlayers=0,visibleClubs=0;
+      clubSections.forEach(sec=>{
+        const secName=sec.querySelector('.pl-club-section-name')?.textContent.trim();
+        const secMatch=value==='all'||secName===value;
+        sec.style.display=secMatch?'':'none';
+        if(secMatch){
+          visibleClubs++;
+          visiblePlayers+=sec.querySelectorAll('.pl-player').length;
+        }
+      });
+      // Update the card summary counts
+      const summary=entry.querySelector('.pl-card-summary');
+      if(summary){
+        const spans=summary.querySelectorAll('span:not(.pl-card-summary-sep)');
+        if(spans.length>=2){
+          spans[0].textContent=visiblePlayers+' player'+(visiblePlayers!==1?'s':'');
+          spans[1].textContent=visibleClubs+' club'+(visibleClubs!==1?'s':'');
+        }
+      }
     });
     const sfx=shown===1?' season':' seasons';
     filterResult.textContent=shown+sfx+' shown';
