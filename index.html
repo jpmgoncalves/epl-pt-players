@@ -96,7 +96,7 @@
   .pl-entry.notable::before{background:var(--pl-magenta);border-color:var(--pl-magenta);box-shadow:0 0 0 4px rgba(233,0,82,0.12)}
   .pl-entry.hidden{display:none}
 
-  .pl-card{background:var(--pl-white);border:1px solid var(--pl-border);border-left:3px solid transparent;border-radius:var(--pl-radius-l);overflow:hidden;transition:border-left-color 0.2s,box-shadow 0.2s}
+  .pl-card{background:var(--pl-white);border:1px solid var(--pl-border);border-left:3px solid transparent;border-radius:var(--pl-radius-l);overflow:visible;transition:border-left-color 0.2s,box-shadow 0.2s}
   .pl-card:hover{border-left-color:var(--pl-magenta);box-shadow:0 2px 16px rgba(55,0,60,0.08)}
   .pl-card-top{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 12px;gap:12px;flex-wrap:wrap}
   .pl-season{font-family:var(--font-display);font-weight:900;font-size:20px;letter-spacing:0.02em;color:var(--pl-purple);line-height:1}
@@ -111,7 +111,7 @@
   .pl-club-accent{width:3px;height:22px;border-radius:2px;flex-shrink:0}
   .pl-club-section-name{font-family:var(--font-display);font-size:13px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:var(--pl-purple)}
   .pl-club-player-count{margin-left:auto;font-family:var(--font-display);font-size:11px;font-weight:600;color:var(--pl-text-dim);letter-spacing:0.05em}
-  .pl-club-players{display:flex;flex-wrap:wrap;gap:5px;padding:0 20px 10px 31px}
+  .pl-club-players{display:flex;flex-wrap:wrap;gap:5px;padding:0 20px 10px 31px;position:relative;overflow:visible}
 
   /* PLAYER CHIP */
   .pl-player{position:relative;display:inline-flex;align-items:stretch;background:var(--pl-bg);border:1px solid var(--pl-border);border-radius:var(--pl-radius);overflow:visible;font-size:13px;font-weight:500;color:var(--pl-text);transition:background 0.12s,border-color 0.12s;cursor:default}
